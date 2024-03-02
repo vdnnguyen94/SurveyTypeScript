@@ -1,0 +1,21 @@
+{
+  "name": "finalsurveytypescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run start-server\" \"yarn dev-client\"",
+    "start-server": "cd server && npm start",
+    "dev-client": "cd client && yarn dev",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  }
+}
