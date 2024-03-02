@@ -1,7 +1,11 @@
 # Survey Web Application using Node TypeScript and React TypeScript
 
 ## Overview
+The Survey Web Application is built using the MERN STACK, incorporating MongoDB, Express, React, and Node.js with TypeScript. This platform empowers users to create and customize survey questions, including Multiple Choice, True/False, and Text Field options. 
 
+Users have the flexibility to set an expiration date for surveys or manage their state from Inactive to Active, ensuring that only Active Surveys (not expired) are displayed to users. Additionally, surveys can contain multiple questions tailored to the user's needs.
+
+The application offers essential account management functionalities. Users can reset their password, update their password, and modify their profile name. However, it's important to note that the username and email cannot be changed.
 ### The Challenge:
 Implementing NodeTypeScript is harder since TypeScript requires type checking, validation of objects before accessing variables, and installing type definitions for files and libraries. 
 Managing survey questions and responses with varying structures (Multiple Choice, True/False, and Text Field Questions) proved challenging. Ensuring data consistency and integrity became paramount, especially for multiple-choice questions.
@@ -19,3 +23,10 @@ As the owner of a survey, you have the capability to download comprehensive surv
 
 This powerful tool empowers you to extract valuable data, facilitating informed decision-making and a deeper understanding of participant responses.
 
+## START APPLICATION
+### Building Client React Application
+cd client && yarn install && yarn build
+### Building Server Application
+cd ../server && npm install && npm run build
+### Start the Application
+yarn dev or npm run dev
