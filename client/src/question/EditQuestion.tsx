@@ -175,7 +175,7 @@ const EditQuestion: React.FC = () => {
     return function cleanup() {
       abortController.abort();
     };
-  }, [questionId]);
+  }, []);
 
   return (
     <div>

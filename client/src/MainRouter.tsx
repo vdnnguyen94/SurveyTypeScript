@@ -1,11 +1,9 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './core/Home';
 import Signup from './user/Signup';
 import PasswordReset from './user/PasswordReset';
 import Signin from './lib/Signin';
 import Profile from './user/Profile';
-import PrivateRoute from './lib/PrivateRoute';
 import EditProfile from './user/EditProfile';
 import UpdatePassword from './user/UpdatePassword';
 import NewSurvey from './survey/NewSurvey';
