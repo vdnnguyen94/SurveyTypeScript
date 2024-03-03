@@ -1,7 +1,7 @@
 # Survey Web Application using Node TypeScript and React TypeScript
 
 ## Overview
-The Survey Web Application is built using the MERN STACK, incorporating MongoDB, Express, React, and Node.js with TypeScript. This platform empowers users to create and customize survey questions, including Multiple Choice, True/False, and Text Field options. 
+The Survey Web Application is built using the MERN STACK, incorporating MongoDB, Express, React, and Node with TypeScript. This platform empowers users to create and customize survey questions, including Multiple Choice, True/False, and Text Field options. 
 
 Users have the flexibility to set an expiration date for surveys or manage their state from Inactive to Active, ensuring that only Active Surveys (not expired) are displayed to users. Additionally, surveys can contain multiple questions tailored to the user's needs.
 
