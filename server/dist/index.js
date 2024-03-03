@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // server/index.ts
 const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./config/db"));
+const config_1 = __importDefault(require("./config/config"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const compression_1 = __importDefault(require("compression"));
@@ -17,7 +18,7 @@ const user_routes_1 = __importDefault(require("./routes/user.routes")); // Updat
 const auth_routes_1 = __importDefault(require("./routes/auth.routes")); // Update extension to .ts
 const app = (0, express_1.default)();
 console.log("PORT process.env: ", process.env.PORT);
-const port = process.env.PORT || 8000;
+//const port = process.env.PORT || 8000;
 // Connect to MongoDB
 (0, db_1.default)();
 // Middleware
@@ -35,6 +36,6 @@ app.use('/', question_routes_1.default);
 app.get('/', (req, res) => {
     res.send('Hello from the server!');
 });
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(config_1.default.port, () => {
+    console.log(`Server is running on port ${config_1.default.port}`);
 });

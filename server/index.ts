@@ -14,7 +14,7 @@ import authRoutes from './routes/auth.routes'; // Update extension to .ts
 
 const app = express();
 console.log("PORT process.env: ", process.env.PORT);
-const port = process.env.PORT || 8000;
+//const port = process.env.PORT || 8000;
 
 // Connect to MongoDB
 connectDB();
@@ -37,6 +37,6 @@ app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(config.port, () => {
+  console.log(`Server is running on port ${config.port}`);
 });
