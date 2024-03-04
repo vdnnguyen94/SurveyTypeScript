@@ -8,7 +8,7 @@ const connectDB = async () => {
     await mongoose.connect(config.mongoUri, {
       dbName: 'SurveyApp' // Use dbName instead of bName
     } as ConnectOptions)
-    console.log('MongoDB connected successfully');
+    console.log('MongoDB connected successfully, PORT', config.port);
     console.log(config.mongoUri);
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);

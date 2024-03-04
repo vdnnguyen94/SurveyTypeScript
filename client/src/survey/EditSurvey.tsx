@@ -87,24 +87,20 @@ const EditSurvey: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const handleClose = () => {
     setOpen(false);
-    window.location.reload();
   };
 
-  const handleActivate = async () => {
-    const result = await activateSurvey({ surveyId: surveyID }, { t: token });
-    if (result.error) {
-      setError(result.error);
-    } else {
-      setOpen(true);
-    }
-  };
+  const fetchSurveyDetails = async () => {
+    try {
+      const surveyData = await surveyByID({ surveyId: surveyID });
 
-  const handleInactivate = async () => {
-    const result = await inactivateSurvey({ surveyId: surveyID }, { t: token });
-    if (result.error) {
-      setError(result.error);
-    } else {
-      setOpen(true);
+      if (surveyData.error) {
+        setError(surveyData.error);
+      } else {
+        setCurrentSurvey(surveyData);
+      }
+    } catch (error) {
+      console.error('Error in fetching survey details:', error);
+      setError('Internal Server Error');
     }
   };
 
@@ -126,20 +122,7 @@ const EditSurvey: React.FC = () => {
   useEffect(() => {
     const abortController = new AbortController();
 
-    const fetchSurveyDetails = async () => {
-      try {
-        const surveyData = await surveyByID({ surveyId: surveyID });
 
-        if (surveyData.error) {
-          setError(surveyData.error);
-        } else {
-          setCurrentSurvey(surveyData);
-        }
-      } catch (error) {
-        console.error('Error in fetching survey details:', error);
-        setError('Internal Server Error');
-      }
-    };
 
     fetchSurveyDetails();
 
@@ -147,7 +130,25 @@ const EditSurvey: React.FC = () => {
       abortController.abort();
     };
   }, [surveyId]);
+  const handleActivate = async () => {
+    const result = await activateSurvey({ surveyId: surveyID }, { t: token });
+    if (result.error) {
+      setError(result.error);
+    } else {
+      setOpen(true);
+      fetchSurveyDetails()
+    }
+  };
 
+  const handleInactivate = async () => {
+    const result = await inactivateSurvey({ surveyId: surveyID }, { t: token });
+    if (result.error) {
+      setError(result.error);
+    } else {
+      setOpen(true);
+      fetchSurveyDetails()
+    }
+  };
   return (
     <div>
       <Card className={classes.card}>
