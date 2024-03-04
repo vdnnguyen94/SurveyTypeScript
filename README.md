@@ -24,11 +24,9 @@ As the owner of a survey, you have the capability to download comprehensive surv
 This powerful tool empowers you to extract valuable data, facilitating informed decision-making and a deeper understanding of participant responses.
 
 # <span style="color:red">START APPLICATION</span>
-## Building Main Application
-npm install
 ## Building Client React Application
 cd client && yarn install && yarn build
 ## Building Server Application
-cd ../server && npm install && npm run build
+cd .. && npm install && tsc
 ## Start the Application
-yarn dev or npm run dev
+npm run dev
