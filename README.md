@@ -6,6 +6,21 @@ The Survey Web Application is built using the MERN STACK, incorporating MongoDB,
 Users have the flexibility to set an expiration date for surveys or manage their state from Inactive to Active, ensuring that only Active Surveys (not expired) are displayed to users. Additionally, surveys can contain multiple questions tailored to the user's needs.
 
 The application offers essential account management functionalities. Users can reset their password, update their password, and modify their profile name. However, it's important to note that the username and email cannot be changed.
+
+https://surveytypescript.onrender.com/ 
+
+### Technologies, Frameworks and tools
+- TypeScript
+- MongoDB
+- Render
+- MERN stack
+- JWT Token
+- JWT Authentication
+- RESTful API
+- CRUD operations
+- React TypeScript
+- Express TypeScript
+
 ### The Challenge:
 Implementing NodeTypeScript is harder since TypeScript requires type checking, validation of objects before accessing variables, and installing type definitions for files and libraries. 
 Managing survey questions and responses with varying structures (Multiple Choice, True/False, and Text Field Questions) proved challenging. Ensuring data consistency and integrity became paramount, especially for multiple-choice questions.
