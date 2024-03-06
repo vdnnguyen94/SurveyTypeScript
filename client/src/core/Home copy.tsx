@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import toonieLogo from '../assets/images/toonieLogo.png';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import auth from '../lib/auth-helper';
 import { signin } from '../lib/api-auth';
@@ -39,29 +39,46 @@ const useStyles = makeStyles((theme: Theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+
 }));
 
 const Home: React.FC<HomeProps> = ({ isUserSignedOut }) => {
   const classes = useStyles();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
 
+  useEffect(() => {
+    const signInWithDefaultAccounts = async () => {
+      const testAccounts = [
+        { username: 'test1@survey.com', password: 'survey123' },
+        { username: 'test2@survey.com', password: 'survey123' },
+        { username: 'test3@survey.com', password: 'survey123' }
+      ];
+
+      if (!auth.isAuthenticated()) {
+        for (const account of testAccounts) {
+          try {
+            const response = await signin(account);
+            if (!response.error) {
+              auth.authenticate(response, () => {});
+              setIsLoggedIn(true);
+              setUsername(account.username);
+              setDialogOpen(true);
+              break;
+            }
+          } catch (error) {
+            console.error('Error logging in:', error);
+          }
+        }
+      }
+    };
+
+    signInWithDefaultAccounts();
+  }, []);
+
   const handleDialogClose = () => {
     setDialogOpen(false);
-  };
-
-  const handleDemoSignIn = async () => {
-    const testAccount = { username: 'test1@survey.com', password: 'survey123' };
-    try {
-      const response = await signin(testAccount);
-      if (!response.error) {
-        auth.authenticate(response, () => {});
-        setUsername(testAccount.username);
-        setDialogOpen(true);
-      }
-    } catch (error) {
-      console.error('Error logging in:', error);
-    }
   };
 
   return (
@@ -77,18 +94,15 @@ const Home: React.FC<HomeProps> = ({ isUserSignedOut }) => {
         />
         <CardContent>
           <div className={classes.buttonContainer}>
-            <Button variant="contained" color="primary" className={classes.button} onClick={handleDemoSignIn}>
-              Demo Sign In
-            </Button>
             <Link to="/signup">
-              <Button  variant="contained" color="primary" className={classes.button}>
+              <Button variant="contained" color="primary" className={classes.button}>
                 Sign Up
               </Button>
             </Link>
             <Link to="/signin">
-            <Button variant="contained" color="primary" className={classes.button}>
-              Sign In
-            </Button>
+              <Button variant="contained" color="primary" className={classes.button}>
+                Sign In
+              </Button>
             </Link>
           </div>
         </CardContent>
@@ -102,9 +116,9 @@ const Home: React.FC<HomeProps> = ({ isUserSignedOut }) => {
         </DialogContent>
         <DialogActions>
           <Link to="/surveys">
-          <Button variant="contained" color="primary" onClick={handleDialogClose}>
-            Go to Surveys
-          </Button>
+            <Button variant="contained" color="primary" onClick={handleDialogClose}>
+              Go to Surveys
+            </Button>
           </Link>
         </DialogActions>
       </Dialog>

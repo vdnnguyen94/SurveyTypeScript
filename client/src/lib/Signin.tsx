@@ -44,6 +44,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     fontSize: '0.6rem',
   },
+  note: {
+    marginTop: theme.spacing(2),
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  password: {
+    marginTop: theme.spacing(1),
+  }
 }));
 
 const SignIn: React.FC = () => {
@@ -106,6 +114,12 @@ const SignIn: React.FC = () => {
           Reset Password
         </Button>
       </Link>
+      <Typography variant="body2" >
+        <span className={classes.note}>Note:</span> Demo Account(s): test1@survey.com, test2@survey.com, test3@survey.com
+      </Typography>
+      <Typography variant="body2" className={classes.password}>
+        Password: survey123
+      </Typography>
     </Card>
   );
 };
